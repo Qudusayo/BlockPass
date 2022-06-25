@@ -28,7 +28,7 @@ function Home() {
 
       <div className={styles.HomeInfo}>
         <div>
-          Re-open confidently with Eventbrite'ss COVID-19 Safety Playbook
+          Re-open confidently with BlockPass's COVID-19 Safety Playbook
         </div>
         <span>
           We partnered with risk management and health experts to empower event
