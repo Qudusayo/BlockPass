@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.AppLogo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.AppHeader {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.AppHeader h2{
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+.AppLink {
+  color: #61dafb;
+}
+
