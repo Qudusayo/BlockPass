@@ -1,0 +1,128 @@
+.Home {
+  &Banner {
+    height: 25.5em;
+    background-image: url("./../../assets/images/ivanontech.jpeg");
+    background-color: rgba(50, 50, 50, 0.8);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center 25%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 4em;
+
+    &Image {
+      width: 28em;
+      object-fit: cover;
+      display: block;
+    }
+
+    button {
+      display: block;
+      font-size: 1em;
+      text-align: center;
+      outline: none;
+      border: none;
+      border-radius: 7px;
+      width: 200px;
+      height: 50px;
+      background-color: #8247e5;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding-left: 2em;
+
+      &Image {
+        width: 15em;
+      }
+
+      button {
+        margin-top: 2em;
+      }
+    }
+  }
+
+  &Info {
+    width: 90%;
+    margin: 2em auto;
+    border-left: 4px solid #8247e5;
+    border-radius: 4px;
+    padding: 1em;
+    box-shadow: 0 4px 12px -4px rgb(46 55 77 / 12%);
+
+    div {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    span {
+      font-size: 0.9em;
+    }
+  }
+
+  &Categories {
+    width: 85%;
+    margin: auto;
+
+    &Grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1em 0.8em;
+
+      @media screen and (max-width: 792px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media screen and (max-width: 360px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &Events {
+    width: 85%;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    &FlexBox {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 2em;
+      align-items: center;
+      margin-bottom: 2em;
+      margin-top: 2em;
+
+      @media screen and (max-width: 1272px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      @media screen and (max-width: 792px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media screen and (max-width: 661px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &Button {
+    display: block;
+    font-size: 1em;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    width: 40%;
+    height: 50px;
+    border: 2px solid #1d3660;
+    color: #1d3660;
+    margin: 3em auto;
+    cursor: pointer;
+  }
+}

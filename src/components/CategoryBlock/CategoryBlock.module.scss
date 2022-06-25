@@ -1,0 +1,28 @@
+.CategoryBlock {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  background-color: #f3f3f3cb;
+  cursor: pointer;
+  // padding: 1.2em;
+
+  aside {
+    flex: 1;
+    padding: 1em;
+    padding-bottom: 0.6em;
+    // padding-right: 0;
+    background: linear-gradient(to right, #8147e50a, #f3f3f3cb);
+    text-align: center;
+    img {
+      width: 25px;
+    }
+  }
+
+  div {
+    flex: 4;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding-left: 1em;
+  }
+}

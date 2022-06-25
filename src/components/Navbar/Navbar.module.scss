@@ -1,0 +1,28 @@
+.Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 2em;
+
+  &Logo {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      font-size: 1.4em;
+      margin-top: 1em;
+      height: fit-content;
+
+      @media screen and (max-width: 412px) {
+        display: none;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      width: 1.5em;
+      color: #1d3660;
+    }
+  }
+}
