@@ -4,6 +4,7 @@ import "./index.scss";
 import App from "./App";
 import { MoralisProvider } from "react-moralis";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,7 +13,9 @@ root.render(
       serverUrl={process.env.REACT_APP_MORALIS_SERVER_URI}
       appId={process.env.REACT_APP_MORALIS_APPLICATION_ID}
     >
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </MoralisProvider>
   </React.StrictMode>
 );
