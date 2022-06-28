@@ -1,0 +1,259 @@
+.Event {
+  color: #1e0a3c;
+  position: relative;
+
+  &Sector {
+    border-bottom: 1px solid #eeedf2;
+    width: 70%;
+    margin: auto;
+    padding: 3em 0;
+    position: relative;
+
+    &:nth-last-of-type(2) {
+      border-bottom: none;
+    }
+
+    &Content {
+      width: 68%;
+      margin: auto;
+
+      span {
+        font-size: 14px;
+        display: block;
+        width: 70%;
+        font-weight: 400;
+      }
+
+      h5,
+      h3 {
+        margin-bottom: -0.5em;
+      }
+
+      &InputLg {
+        display: block;
+        border: 1px solid #dcdcdf;
+        margin-top: 1em;
+        box-sizing: border-box;
+        padding: 0.4em 1em;
+
+        span {
+          font-size: 0.8em;
+        }
+
+        input {
+          width: 100%;
+          outline: none;
+          border: none;
+        }
+      }
+
+      select {
+        width: 100%;
+        font-size: 0.9em;
+        outline: none;
+        border: none;
+      }
+
+      &Flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5em;
+
+        label {
+          width: 49%;
+          justify-content: space-between;
+        }
+      }
+
+      .InputExtraData {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 0.3em;
+
+        span {
+          font-size: 0.75em;
+          &:nth-of-type(1) {
+            color: red;
+          }
+
+          &:nth-of-type(2) {
+            text-align: right;
+          }
+        }
+      }
+
+      &Tag {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+          width: 85%;
+        }
+
+        button {
+          outline: none;
+          border: 2px solid #b4b3b6;
+          border-radius: 7px;
+          background-color: transparent;
+          padding: 0.5em 1.5em;
+          font-weight: bold;
+          font-size: 1em;
+          cursor: pointer;
+        }
+
+        span {
+          &:nth-of-type(1) {
+            color: #000000 !important;
+          }
+        }
+      }
+
+      h1 {
+        font-weight: 700;
+        line-height: 2.25rem;
+        letter-spacing: 0.75px;
+        margin: 0;
+      }
+
+      input[type="radio"] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        appearance: none;
+        /* For iOS < 15 to remove gradient background */
+        background-color: #fff;
+        /* Not removed via appearance */
+        margin: 0;
+      }
+
+      &Radio {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        margin-top: 0.5em;
+
+        label {
+          margin-right: 1rem;
+          padding: 0.5em 2em;
+          border: 1px solid #dcdcdf;
+          border-radius: 4px;
+          cursor: pointer;
+          box-sizing: border-box;
+
+          &.active {
+            border: 1px solid #bfa0f2;
+            background-color: #ece3fb;
+          }
+        }
+      }
+
+      .CheckBox {
+        display: flex;
+        margin-top: 1em;
+        position: relative;
+
+        input {
+          -webkit-appearance: none;
+          width: 1.4rem;
+          height: 1.4rem;
+          border: 1px solid hsl(0, 0%, 85%);
+          border-radius: 3px;
+          vertical-align: sub;
+          position: absolute;
+          top: 40%;
+          transform: translateY(-50%);
+          left: 1rem;
+          outline: none;
+          transition: all .2s ease-in-out;
+          cursor: pointer;
+
+          &:checked {
+            background-color: hsl(209, 100%, 50%);
+            border-color: hsl(0, 0%, 84%);
+          }
+
+          &:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmljb25fYnlfUG9zaGx5YWtvdjEwPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjZmZmZmZmIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNi4wMDAwMDAsIDI2LjAwMDAwMCkiPjxwYXRoIGQ9Ik0xNy45OTk5ODc4LDMyLjQgTDEwLjk5OTk4NzgsMjUuNCBDMTAuMjI2Nzg5MSwyNC42MjY4MDE0IDguOTczMTg2NDQsMjQuNjI2ODAxNCA4LjE5OTk4Nzc5LDI1LjQgTDguMTk5OTg3NzksMjUuNCBDNy40MjY3ODkxNCwyNi4xNzMxOTg2IDcuNDI2Nzg5MTQsMjcuNDI2ODAxNCA4LjE5OTk4Nzc5LDI4LjIgTDE2LjU4NTc3NDIsMzYuNTg1Nzg2NCBDMTcuMzY2ODIyOCwzNy4zNjY4MzUgMTguNjMzMTUyOCwzNy4zNjY4MzUgMTkuNDE0MjAxNCwzNi41ODU3ODY0IEw0MC41OTk5ODc4LDE1LjQgQzQxLjM3MzE4NjQsMTQuNjI2ODAxNCA0MS4zNzMxODY0LDEzLjM3MzE5ODYgNDAuNTk5OTg3OCwxMi42IEw0MC41OTk5ODc4LDEyLjYgQzM5LjgyNjc4OTEsMTEuODI2ODAxNCAzOC41NzMxODY0LDExLjgyNjgwMTQgMzcuNzk5OTg3OCwxMi42IEwxNy45OTk5ODc4LDMyLjQgWiI+PC9wYXRoPjwvZz48L2c+PC9nPjwvc3ZnPg==");
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+
+        label {
+          flex: 1;
+          margin-left: 3.5em;
+
+          span {
+            &:nth-of-type(1) {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(1) {
+      &::before {
+        content: url(./../../assets/icons/basicInfo.png);
+      }
+    }
+    &:nth-of-type(2) {
+      &::before {
+        content: url(./../../assets/icons/loc.png);
+      }
+    }
+    &:nth-of-type(3) {
+      &::before {
+        content: url(./../../assets/icons/dateandtime.png);
+      }
+    }
+    &::before {
+      // width: 200px;
+      // height: 200px;
+      position: absolute;
+      top: 0;
+      left: 70px;
+      top: 3em;
+    }
+  }
+
+  &Conclusion {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #eeedf2;
+    height: 70px;
+    width: 100%;
+    background-color: #ffffff;
+    padding-right: 6em;
+
+    button {
+      outline: none;
+      padding: 0.8em 2em;
+      border: 1px solid #dcdcdf;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:nth-of-type(2) {
+        margin-left: 2em;
+        border: #8247e5;
+        background-color: #8247e5;
+        color: #fff;
+      }
+    }
+  }
+}

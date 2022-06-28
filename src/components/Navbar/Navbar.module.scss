@@ -3,11 +3,16 @@
   align-items: center;
   justify-content: space-between;
   height: 65px;
-  padding: 2em;
+  padding: 0 13px;
+  position: sticky;
+  z-index: 5;
+  background-color: #ffffff;
 
-  &Logo {
+  &Logo a{
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: #1d3660;
 
     h2 {
       font-size: 1.4em;
@@ -23,6 +28,46 @@
       max-width: 100%;
       width: 1.5em;
       color: #1d3660;
+    }
+  }
+
+  &Link {
+    display: flex;
+    align-items: center;
+    height: 65px;
+
+    &Item a,
+    &Item {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1em;
+      margin: 0 0.5em;
+      cursor: pointer;
+      text-decoration: none;
+      color: #000000;
+
+      &:hover {
+        background-color: #f4f4f4;
+      }
+
+      span {
+        font-size: 0.9em;
+      }
+
+      img {
+        width: 25px;
+      }
+
+      &:nth-of-type(3) {
+        span {
+          img {
+            transform: rotate(90deg);
+          }
+        }
+      }
     }
   }
 }
