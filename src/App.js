@@ -5,9 +5,10 @@ import Footer from "./components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import AuthContainer from "./components/AuthContainer/AuthContainer";
 import CreateEvent from "./pages/CreateEvent/CreateEvent";
+import Events from "./pages/Events/Events";
 
 function Wrapper(params) {
-  return <AuthContainer>{params.children}</AuthContainer>;
+  return <AuthContainer>{params}</AuthContainer>;
 }
 
 function App() {
@@ -20,11 +21,11 @@ function App() {
         <Route path="/event" element={<Event />} />
         <Route
           path="/manage/events/create"
-          element={
-            <Wrapper>
-              <CreateEvent />
-            </Wrapper>
-          }
+          element={Wrapper(<CreateEvent />) }
+        />
+        <Route
+          path="/organisation/events"
+          element={Wrapper(<Events />)}
         />
       </Routes>
       {/* <Footer /> */}

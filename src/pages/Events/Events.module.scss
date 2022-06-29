@@ -1,0 +1,249 @@
+.Events {
+  margin: auto;
+  width: 62%;
+  margin-left: 13%;
+  padding-bottom: 7em;
+
+  h1 {
+    font-weight: 1200;
+    font-size: 3em;
+  }
+
+  nav {
+    ul {
+      list-style-type: none;
+      padding-inline-start: 0;
+      display: flex;
+
+      li {
+        font-weight: bold;
+
+        &:nth-of-type(1) {
+          color: blue;
+          border-bottom: 2px solid blue;
+          padding-bottom: 0.5em;
+        }
+
+        &:nth-of-type(2) {
+          margin-left: 2em;
+        }
+      }
+    }
+  }
+
+  &Selector {
+    display: flex;
+    margin-top: 4em;
+
+    div {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      input[type="radio"] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        appearance: none;
+        /* For iOS < 15 to remove gradient background */
+        background-color: #fff;
+        /* Not removed via appearance */
+        margin: 0;
+      }
+
+      label {
+        margin-right: 0.5rem;
+        padding: 0.75em 2em;
+        border: 1px solid #dcdcdf;
+        border-radius: 4px;
+        cursor: pointer;
+        box-sizing: border-box;
+        font-size: 0.85em;
+
+        &:nth-of-type(1) {
+          border: 1.5px solid #bfa0f2;
+          background-color: #ece3fb;
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #8247e5;
+      padding: 0.75em 2em;
+      height: fit-content;
+      border-radius: 5px;
+    }
+  }
+
+  .Form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5em;
+
+    label {
+      width: 32.5%;
+      justify-content: space-between;
+      border-radius: 2px;
+    }
+
+    &InputLg {
+      display: block;
+      border: 1px solid #dcdcdf;
+      margin-top: 1em;
+      box-sizing: border-box;
+      padding: 0.3em 1em;
+
+      span {
+        font-size: 0.75em;
+        margin-bottom: -0.5em;
+        z-index: 1;
+        display: block;
+      }
+
+      select {
+        width: 100%;
+        font-size: 0.8em;
+        outline: none;
+        border: none;
+      }
+    }
+
+    &InputSearch {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0.54em;
+      margin-top: 1em;
+      border: 1px solid #dcdcdf;
+
+      img {
+        width: 25px;
+      }
+
+      input {
+        width: 70%;
+        outline: none;
+        border: none;
+      }
+
+      &Reset {
+        background-color: #dfdfdf;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+
+        img {
+          width: 15px;
+        }
+      }
+    }
+  }
+
+  &Table {
+    margin-top: 2em;
+    width: 100%;
+
+    &Head {
+      display: grid;
+      grid-template-columns: 5fr 1fr 1fr 2fr;
+      background-color: #f2f2f2;
+      padding: 1em 2em;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+
+    &Body {
+      border-bottom: 1px solid #d3d3d3;
+
+      &:hover {
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+          rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+      }
+
+      &:nth-last-of-type(1) {
+        border-bottom: none;
+      }
+      &Row {
+        display: grid;
+        grid-template-columns: 0.8fr 1fr 5fr 1.5fr 1.5fr 1.2fr 1.5fr;
+        padding: 1em 1.5em;
+        transition: box-shadow 0.2s linear;
+
+        & > * {
+          cursor: pointer;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        &Date {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          span {
+            &:nth-of-type(1) {
+              font-size: 0.8em;
+              color: #8247e5;
+              font-weight: bold;
+            }
+
+            &:nth-of-type(2) {
+              font-size: 1.2em;
+              font-weight: bold;
+              color: #888888;
+            }
+          }
+        }
+
+        &Info {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          &Title {
+            font-size: 0.9em;
+            font-weight: bold;
+          }
+
+          &Date {
+            font-size: 0.75em;
+          }
+        }
+
+        &Sold {
+          display: flex;
+          align-items: center;
+          font-size: 0.85em;
+        }
+        &Gross {
+          display: flex;
+          align-items: center;
+          font-size: 0.85em;
+        }
+        &Status {
+          font-size: 0.85em;
+          display: flex;
+          align-items: center;
+        }
+        &Options {
+          display: flex;
+          // align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
