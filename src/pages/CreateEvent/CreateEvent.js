@@ -5,6 +5,7 @@ import styles from "./CreateEvent.module.scss";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import Moralis from "moralis";
+import BlockSelector from "../../components/BlockSelector/BlockSelector";
 
 function CreateEvent() {
   const [countries, setCountries] = useState([]);
@@ -110,51 +111,18 @@ function CreateEvent() {
             Help people in the area discover your event and let attendees know
             where to show up.
           </span>
-          <div className={styles.EventSectorContentRadio}>
-            <label
-              className={
-                formik.values.location === "venue" ? styles.active : ""
-              }
-            >
-              <input
-                id="venue"
-                name="location"
-                type={"radio"}
-                checked={formik.values.location === "venue"}
-                onChange={formik.handleChange}
-                value={"venue"}
-              />
-              Venue
-            </label>
-            <label
-              className={
-                formik.values.location === "online" ? styles.active : ""
-              }
-            >
-              <input
-                id="online"
-                name="location"
-                type={"radio"}
-                checked={formik.values.location === "online"}
-                onChange={formik.handleChange}
-                value={"online"}
-              />
-              Online Event
-            </label>
-            <label
-              className={formik.values.location === "tba" ? styles.active : ""}
-            >
-              <input
-                id="tba"
-                name="location"
-                type={"radio"}
-                checked={formik.values.location === "tba"}
-                onChange={formik.handleChange}
-                value={"tba"}
-              />
-              To Be Announced
-            </label>
-          </div>
+          <BlockSelector
+            name={"location"}
+            values={[
+              { name: "Venue", id: "venue" },
+              { name: "Online Event", id: "online" },
+              { name: "To be announced", id: "tba" },
+            ]}
+            currentValue={formik.values.location}
+            onChange={(e) =>
+              formik.setValues({ ...formik.values, location: e.target.value })
+            }
+          />
           {formik.values.location === "venue" && (
             <>
               <h5>Venue Location</h5>
@@ -238,38 +206,17 @@ function CreateEvent() {
             Tell event-goers when your event starts and ends so they can make
             plans to attend.
           </span>
-          <div className={styles.EventSectorContentRadio}>
-            <label
-              className={
-                formik.values.eventType === "single" ? styles.active : ""
-              }
-            >
-              <input
-                id="single"
-                name="eventType"
-                type={"radio"}
-                checked={formik.values.eventType === "single"}
-                onChange={formik.handleChange}
-                value={"single"}
-              />
-              Single Event
-            </label>
-            <label
-              className={
-                formik.values.eventType === "recurring" ? styles.active : ""
-              }
-            >
-              <input
-                id="recurring"
-                name="eventType"
-                type={"radio"}
-                checked={formik.values.eventType === "recurring"}
-                onChange={formik.handleChange}
-                value={"recurring"}
-              />
-              Recurring Event
-            </label>
-          </div>
+          <BlockSelector
+            name={"eventType"}
+            values={[
+              { name: "Single Event", id: "single" },
+              { name: "Recurring Event", id: "recurring" },
+            ]}
+            currentValue={formik.values.eventType}
+            onChange={(e) =>
+              formik.setValues({ ...formik.values, eventType: e.target.value })
+            }
+          />
           {formik.values.eventType === "single" && (
             <>
               <span>Single event happens once and can last multiple days</span>

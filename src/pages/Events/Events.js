@@ -1,4 +1,4 @@
-import React from "react";
+import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 
 import styles from "./Events.module.scss";
@@ -8,8 +8,18 @@ import reset from "../../assets/icons/reset.svg";
 import ivanontech from "../../assets/images/ivanontech.jpeg";
 import polygonvillage from "../../assets/images/polygonvillage.jpg";
 import noimg from "../../assets/images/noimg.png";
+import BlockSelector from "../../components/BlockSelector/BlockSelector";
 
 function Events() {
+  const formik = useFormik({
+    initialValues: {
+      display: "list",
+      search: "",
+      eventStatus: "",
+      organizer: "",
+    },
+  });
+
   return (
     <div className={styles.Events}>
       <h1>Events</h1>
@@ -20,16 +30,17 @@ function Events() {
         </ul>
       </nav>
       <div className={styles.EventsSelector}>
-        <div>
-          <label>
-            <input type="radio" />
-            List
-          </label>
-          <label>
-            <input type="radio" />
-            Calender
-          </label>
-        </div>
+        <BlockSelector
+          name={"display"}
+          values={[
+            { name: "List", id: "list" },
+            { name: "Calender", id: "calender" },
+          ]}
+          currentValue={formik.values.display}
+          onChange={(e) =>
+            formik.setValues({ ...formik.values, display: e.target.value })
+          }
+        />
         <Link to={"/"}>Create Event</Link>
       </div>
 
@@ -38,7 +49,7 @@ function Events() {
           <img src={lensImg} alt="lens" />
           <input type={"text"} placeholder={"Search events"} />
           <span className={styles.FormInputSearchReset}>
-          <img src={reset} alt="reset" />
+            <img src={reset} alt="reset" />
           </span>
         </label>
         <label className={styles.FormInputLg}>

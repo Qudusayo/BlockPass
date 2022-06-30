@@ -1,9 +1,9 @@
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./Layout/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Event from "./pages/Event/Event";
-import Footer from "./components/Footer/Footer";
+import Footer from "./Layout/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import AuthContainer from "./components/AuthContainer/AuthContainer";
+import AuthContainer from "./Layout/AuthContainer/AuthContainer";
 import CreateEvent from "./pages/CreateEvent/CreateEvent";
 import Events from "./pages/Events/Events";
 

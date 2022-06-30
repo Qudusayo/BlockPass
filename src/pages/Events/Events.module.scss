@@ -40,31 +40,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      input[type="radio"] {
-        /* Add if not using autoprefixer */
-        -webkit-appearance: none;
-        appearance: none;
-        /* For iOS < 15 to remove gradient background */
-        background-color: #fff;
-        /* Not removed via appearance */
-        margin: 0;
-      }
-
-      label {
-        margin-right: 0.5rem;
-        padding: 0.75em 2em;
-        border: 1px solid #dcdcdf;
-        border-radius: 4px;
-        cursor: pointer;
-        box-sizing: border-box;
-        font-size: 0.85em;
-
-        &:nth-of-type(1) {
-          border: 1.5px solid #bfa0f2;
-          background-color: #ece3fb;
-        }
-      }
     }
 
     a {
