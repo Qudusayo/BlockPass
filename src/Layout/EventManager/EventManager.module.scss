@@ -1,0 +1,169 @@
+@mixin hover {
+  &:hover {
+    background-color: #efefef;
+  }
+}
+
+.EventManager {
+  display: flex;
+  height: 100vh;
+
+  &Sidebar {
+    background-color: #f8f7fa;
+    overflow: auto;
+    height: 100%;
+    width: 18em;
+    z-index: 2;
+
+    &Select {
+      margin: 1em;
+      width: 8em;
+      border-radius: 200px;
+      background-color: red;
+      font-size: .95em;
+
+      & > div {
+        cursor: pointer;
+        width: 12em;
+
+        &:nth-of-type(1) {
+          width: 100%;
+          border-radius: 250px;
+        }
+      }
+    }
+
+    &Back {
+      color: blue;
+      padding: 1.2em 1em;
+      border-bottom: 2px solid #e7e5e550;
+      width: 100%;
+      display: block;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+
+      span {
+        padding-left: 1em;
+        font-size: 0.9em;
+      }
+    }
+
+    &Info {
+      padding: 0.2em 1em;
+      h2 {
+        margin-bottom: 0;
+      }
+
+      span {
+        display: block;
+        font-size: 0.8em;
+        margin: 0.3em 0;
+
+        a {
+          color: blue;
+          font-weight: bold;
+        }
+      }
+    }
+
+    ul {
+      padding-inline-start: 0;
+      border: 1px solid #f3eef3;
+      border-right: none;
+      border-left: none;
+      margin-bottom: 0;
+
+      li {
+        padding: 1em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        
+        @include hover();
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+
+        span {
+          padding-left: 1em;
+          font-size: 0.9em;
+
+          &.numberTick {
+            padding: 0;
+            width: 21.5px;
+            height: 21.5px;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 0.8em;
+            font-weight: 100;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        &:nth-of-type(1) {
+          background-color: #ffffff;
+        }
+      }
+    }
+
+    &Link {
+      padding: 1.2em 1em;
+      width: 100%;
+      display: block;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #000000;
+      font-weight: bold;
+      font-size: 0.9em;
+      @include hover();
+    }
+
+    &Dropdown {
+      span {
+        width: 100%;
+        display: block;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold;
+        font-size: 0.9em;
+      }
+
+      &Header {
+        cursor: pointer;
+        padding: 1.2em 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include hover();
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  &Child {
+    width: 68%;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+  }
+}

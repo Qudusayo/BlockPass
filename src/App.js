@@ -6,9 +6,21 @@ import { Route, Routes } from "react-router-dom";
 import AuthContainer from "./Layout/AuthContainer/AuthContainer";
 import CreateEvent from "./pages/CreateEvent/CreateEvent";
 import Events from "./pages/Events/Events";
+import BasicInfo from "./pages/BasicInfo/BasicInfo";
+import EventManager from "./Layout/EventManager/EventManager";
 
 function Wrapper(params) {
-  return <AuthContainer>{params}</AuthContainer>;
+  return <AuthContainer>
+    <BasicInfo>{params}</BasicInfo>
+  </AuthContainer>;
+}
+
+function EventMg(params) {
+  return (
+    <AuthContainer>
+      <EventManager>{params}</EventManager>
+    </AuthContainer>
+  );
 }
 
 function App() {
@@ -21,12 +33,10 @@ function App() {
         <Route path="/event" element={<Event />} />
         <Route
           path="/manage/events/create"
-          element={Wrapper(<CreateEvent />) }
+          element={Wrapper(<CreateEvent />)}
         />
-        <Route
-          path="/organisation/events"
-          element={Wrapper(<Events />)}
-        />
+        <Route path="/organisation/events" element={Wrapper(<Events />)} />
+        <Route path="/basicinfo" element={EventMg(<CreateEvent />)} />
       </Routes>
       {/* <Footer /> */}
     </>

@@ -1,0 +1,5 @@
+@for $width from 1 to 101 {
+  .md#{$width} {
+    width: $width * 1%;
+  }
+}

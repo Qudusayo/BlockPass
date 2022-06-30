@@ -1,0 +1,61 @@
+.FlexInput {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &Input,
+  &InputPlain {
+    border: 1px solid #dcdcdf;
+    margin-top: 1em;
+    box-sizing: border-box;
+    padding: 0.4em 1em;
+    display: block;
+    width: 100%;
+
+    span {
+      font-size: 0.8em;
+      margin-bottom: -0.4em;
+      z-index: 10;
+    }
+
+    input {
+      width: 100%;
+      outline: none;
+      border: none;
+      background-color: transparent;
+    }
+
+    select {
+      font-size: 0.8em;
+      background-color: transparent;
+      width: 100%;
+      outline: none;
+      border: none;
+    }
+  }
+
+  &InputPlain {
+    padding: 0.965em;
+  }
+
+  &ExtraData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.3em;
+
+    span {
+      font-size: 0.75em !important;
+      flex: 1;
+
+      &:nth-of-type(1) {
+        // color: red;
+      }
+
+      &:nth-of-type(2) {
+        text-align: right;
+      }
+    }
+  }
+}
