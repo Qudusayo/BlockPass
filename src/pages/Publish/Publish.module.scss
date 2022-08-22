@@ -1,0 +1,111 @@
+.Publish {
+  width: 98%;
+  margin: auto;
+
+  &Card {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 7px;
+    background-color: #ffffff;
+
+    div {
+      flex: 1;
+    }
+
+    &Img {
+      // background-image: url("./../../assets/images/ivanontech.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+    }
+
+    &Content {
+      padding: 2em 20px;
+      padding-bottom: 1em;
+      font-size: 18px;
+      color: #000000;
+      text-align: left;
+
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h3 {
+        font-size: 1em;
+        margin-bottom: 0.5em;
+      }
+
+      p,
+      span {
+        font-size: 0.7em;
+      }
+    }
+
+    &Line {
+      border-bottom: 1px solid #e0e0e0;
+      padding-top: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    a {
+      font-size: 0.8em;
+      text-align: center;
+      display: block;
+      color: rgb(0, 94, 255);
+      text-decoration: none;
+    }
+  }
+
+  &Options {
+    width: 45%;
+
+    h2 {
+      margin: 2em 0 0.8em;
+      font-size: 1.1em;
+    }
+
+    label {
+      display: block;
+      margin-top: 0.5em;
+
+      span {
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  &Footer {
+    position: absolute;
+    bottom: -3em;
+    border-top: 1px solid #dcdcdf;
+    width: 100%;
+    left: 0;
+
+    div {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      button {
+        outline: none;
+        padding: 0.8em 4.7em;
+        border: 1px solid #dcdcdf;
+        background-color: #8247e5;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        margin-top: 1em;
+        margin-right: 2em;
+        color: #ffffff;
+
+        &:disabled {
+          background-color: lighten($color: #8247e5, $amount: 30%);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

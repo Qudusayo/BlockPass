@@ -1,0 +1,38 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_baseUrl",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_objectId",
+				"type": "string"
+			}
+		],
+		"name": "createTicket",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "createdTicket",
+		"outputs": [
+			{
+				"internalType": "contract Ticket",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

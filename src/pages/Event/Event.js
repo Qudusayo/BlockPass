@@ -1,4 +1,5 @@
 import styles from "./Event.module.scss";
+import console from "console-browserify";
 
 import like from "../../assets/icons/like.svg";
 import upload from "../../assets/icons/share.svg";
@@ -9,10 +10,46 @@ import linkedin from "../../assets/icons/linkedin.svg";
 import ivanontech from "./../../assets/images/ivanontech.jpeg";
 import { useEffect, useRef, useState } from "react";
 import EventCard from "../../components/EventCard/EventCard";
+import Spinner from "../../components/Spinner/Spinner";
+import {
+  useMoralis,
+  useMoralisQuery,
+  useNativeBalance,
+  useWeb3ExecuteFunction,
+} from "react-moralis";
+import { useLocation } from "react-router-dom";
+import moment from "moment";
+import ticketMetadata from "./../../assets/ticket_metadata.json";
 
 function Event() {
+  const { account } = useMoralis();
+  const location = useLocation();
+  const eventId = location.pathname.split("/")[2];
+  const { fetch } = useWeb3ExecuteFunction();
+  const [isPurchasing, setIsPurchasing] = useState(false);
+
+  const { data } = useMoralisQuery(
+    "Events",
+    (query) => query.equalTo("objectId", eventId),
+    [eventId],
+    { autoFetch: true }
+  );
   const [isSticky, setIsSticky] = useState(false);
   const ref = useRef();
+  const { getBalances } = useNativeBalance();
+  const { isInitialized, isAuthenticated } = useMoralis();
+
+  useEffect(() => {
+    if (isInitialized && isAuthenticated) {
+      getBalances({
+        onSuccess: (res) => console.log(res),
+      });
+    }
+  }, [isInitialized, isAuthenticated]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     const cachedRef = ref.current,
@@ -31,9 +68,62 @@ function Event() {
     };
   }, []);
 
+  useEffect(() => {
+    let date = moment(data[0]?.get("eventStartDate")).format("MMM");
+    console.log(date);
+  }, [data]);
+
+  const purchaseTicket = () => {
+    console.log("Purchasing Ticket");
+    setIsPurchasing((init) => !init);
+    let contractAddress = data[0].get("ticketAddress");
+    console.log(contractAddress);
+    fetch({
+      params: {
+        abi: ticketMetadata,
+        functionName: "safeMint",
+        contractAddress,
+        params: {
+          to: account,
+        },
+      },
+      onSuccess: async (res) => {
+        console.log(res);
+        let tx = res;
+        await tx.wait();
+        console.log(tx);
+        data[0].set(
+          "eventTicketSold",
+          parseInt(data[0].get("eventTicketSold")) + 1
+        );
+        await data[0].save();
+        return setIsPurchasing((init) => !init);
+      },
+      onError: (error) => {
+        console.log(error);
+        return setIsPurchasing((init) => !init);
+      },
+    });
+  };
+
+  const shortenAddress = (address) => {
+    return !!address
+      ? address.slice(0, 7) +
+          "...." +
+          address.slice(address.length - 7, address.length)
+      : null;
+  };
+
   return (
     <div className={styles.Event}>
-      <div className={styles.EventBG}>
+      <div
+        className={styles.EventBG}
+        style={{
+          backgroundImage: `url("${
+            ivanontech && data[0] && data[0]?.get("eventImage")
+          }")`,
+        }}
+      >
         <div className={styles.EventBGBlur}></div>
       </div>
 
@@ -41,20 +131,28 @@ function Event() {
         <div className={styles.EventCardHeader}>
           <div
             className={styles.EventCardHeaderBanner}
-            style={{ backgroundImage: `url("${ivanontech}")` }}
+            style={{
+              backgroundImage: `url("${
+                ivanontech && data[0] && data[0]?.get("eventImage")
+              }")`,
+            }}
           ></div>
           <div className={styles.EventCardHeaderTitle}>
             <div>
               <span>
-                AUG <br /> 1
+                {moment(data[0]?.get("eventStartDate")).format("MMM")} <br />{" "}
+                {moment(data[0]?.get("eventStartDate")).format("D")}
               </span>
             </div>
             <div>
-              <h3>Moralis Weekly Livestream from Ivan Liljeqvist</h3>
-              <span>by Ivan On Tech</span>
+              <h3>{data[0]?.get("eventTitle")}</h3>
+              <span>
+                by {shortenAddress(data[0]?.get("creator")?.get("ethAddress"))}
+              </span>
+              <br />
               <span>Follow</span>
             </div>
-            <div>$200</div>
+            <div>${data[0]?.get("eventTicketPrice")}</div>
           </div>
         </div>
         <div
@@ -73,30 +171,53 @@ function Event() {
                 <img src={like} alt="like" />
               </div>
             </div>
-            <span className={styles.price}>$200</span>
+            <span className={styles.price}>
+              ${data[0]?.get("eventTicketPrice")}
+            </span>
           </div>
-          <div className={styles.EventButtonsPurchase}>
-            <button>Tickets</button>
-          </div>
+          {data[0]?.get("ticketAddress") ? (
+            <div className={styles.EventButtonsPurchase}>
+              <button onClick={purchaseTicket} disabled={isPurchasing}>
+                {isPurchasing ? <Spinner /> : "Get Ticket"}
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className={styles.EventInfo}>
           <div className={styles.EventInfoLocation}>
             <div>
               <h3>Date and Time</h3>
-              <span>Thu, 30 Jun 2022, 22:00 -</span>
+              <span>
+                {data[0]?.get("eventStartDate")
+                  ? moment(
+                      `${data[0]?.get("eventStartDate")} ${data[0]?.get(
+                        "eventStartTime"
+                      )}`
+                    ).format("llll")
+                  : null}{" "}
+                -
+              </span>
               <br />
-              <span>Fri, 1 Jul 2022, 04:00 WEST</span>
+              <span>
+                {data[0]?.get("eventEndDate")
+                  ? moment(
+                      `${data[0]?.get("eventEndDate")} ${data[0]?.get(
+                        "eventEndTime"
+                      )}`
+                    ).format("llll")
+                  : null}
+              </span>
             </div>
             <div>
               <h3>Location</h3>
               <address>
-                Mojito Temple
+                {data[0]?.get("eventAddress1")}
                 <br />
-                Rua António Feu
+                {data[0]?.get("eventAddress2")}
                 <br />
-                8500-802 Portimão
+                {data[0]?.get("eventZipCode")} {data[0]?.get("eventCity")}
                 <br />
-                Portugal
+                {data[0]?.get("eventCountry")}
                 <br />
               </address>
             </div>
@@ -107,48 +228,16 @@ function Event() {
             </div>
           </div>
           <div className={styles.EventInfoData}>
-            <h4>Blockchain Technology and its applications in finance</h4>
+            <h4>{data[0]?.get("eventTitle")}</h4>
             <h3>About this event</h3>
-            <p>
-              Blockchain Technology has been considered as the most fundamental
-              and revolutionising invention since the Internet. Because of its
-              immutable nature and its associated security and privacy benefits,
-              it has widely attracted the attention of banks, governments,
-              techno-corporations, as well as venture investors, entrepreneurs,
-              and academics. Every year, thousands of Blockchain projects are
-              launched, and various types of new cryptocurrencies are issued and
-              circulated in the market.
-            </p>
-
-            <p>
-              Blockchain applications range from decentralised finance to
-              healthcare, from education to media and logistics, from supply
-              chains and energy economics to non-fungible tokens and many more.
-              However, the theoretical limitations and technical challenges in
-              the wider adoption of the blockchain technology, such as
-              scalability, latency, privacy, and security need to be further
-              studied and addressed in high quality research.
-            </p>
-
-            <p>
-              The International Conference on Mathematical Research for
-              Blockchain Economy (MARBLE), now in its 3rd edition, focuses on
-              the mathematics behind blockchain to bridge the gap between
-              practice and theory. It aims to provide a high-profile,
-              cutting-edge platform for mathematicians, computer scientists and
-              economists to present latest advances and innovations in key
-              theories of blockchain.
-            </p>
-            <img src={ivanontech} alt="ivanontech" />
+            <div
+              dangerouslySetInnerHTML={{ __html: data[0]?.get("eventDetails") }}
+            ></div>
             <h3 className={styles.EventInfoHeader}>Tags</h3>
             <div className={styles.EventInfoDataTags}>
-              <span>blockchain</span>
-              <span>crypto</span>
-              <span>blockchain</span>
-              <span>ethereum</span>
-              <span>Ivan</span>
-              <span>Ivanontech</span>
-              <span>Moralis</span>
+              {data[0]?.get("eventTags").map((tag, i) => (
+                <span key={i}>{tag}</span>
+              ))}
             </div>
             <h3 className={styles.EventInfoHeader}>Share with friends</h3>
             <div className={styles.EventInfoShareIcons}>
@@ -165,16 +254,14 @@ function Event() {
           </div>
         </div>
         <div className={styles.EventLoc}>
-          <h3>Moralis Weekly Livestream from Ivan Liljeqvist</h3>
+          <h3>{data[0]?.get("eventTitle")}</h3>
           <span>at</span>
           <h3>Mojito Temple</h3>
           <span>Rua António Feu 8500-802 Portimão</span>
         </div>
         <div className={styles.EventOwner}>
           <h3>Moralis Web3</h3>
-          <span>
-            Orginiser of Moralis Weekly Livestream from Ivan Liljeqvist
-          </span>
+          <span>Orginiser of {data[0]?.get("eventTitle")}</span>
           <div className={styles.EventOwnerButton}>
             <button>Follow</button>
             <button>Contact</button>

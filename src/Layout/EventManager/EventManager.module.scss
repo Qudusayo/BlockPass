@@ -20,7 +20,7 @@
       width: 8em;
       border-radius: 200px;
       background-color: red;
-      font-size: .95em;
+      font-size: 0.95em;
 
       & > div {
         cursor: pointer;
@@ -79,13 +79,14 @@
       border-left: none;
       margin-bottom: 0;
 
-      li {
+      li a {
         padding: 1em;
         font-weight: bold;
         display: flex;
         align-items: center;
         cursor: pointer;
-        
+        text-decoration: none;
+
         @include hover();
 
         img {
@@ -96,6 +97,7 @@
         span {
           padding-left: 1em;
           font-size: 0.9em;
+          color: #000000;
 
           &.numberTick {
             padding: 0;
@@ -112,7 +114,7 @@
           }
         }
 
-        &:nth-of-type(1) {
+        &.activeLink {
           background-color: #ffffff;
         }
       }
@@ -129,6 +131,10 @@
       font-weight: bold;
       font-size: 0.9em;
       @include hover();
+
+      &ActiveLink {
+        background-color: #ffffff;
+      }
     }
 
     &Dropdown {

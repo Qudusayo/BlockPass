@@ -7,7 +7,6 @@ function FlexInput({ inputs }) {
   return (
     <div className={styles.FlexInput}>
       {inputs.map((input, index) => {
-        console.log(input.className);
         return (
           <div key={index} className={input.className}>
             {!!input.title ? (

@@ -1,4 +1,5 @@
 import { ConnectButton } from "web3uikit";
+import console from "console-browserify";
 
 import plus from "../../assets/icons/plus.svg";
 import like from "../../assets/icons/like.svg";
@@ -7,9 +8,15 @@ import logo from "./../../assets/logo/BlockPass Logo.svg";
 import styles from "./Navbar.module.scss";
 import { useMoralis } from "react-moralis";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Navbar() {
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated, user } = useMoralis();
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+  
 
   return (
     <nav className={styles.Nav}>

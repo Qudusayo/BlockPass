@@ -1,0 +1,21 @@
+{
+  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+  "external_url": "https://blockpass.me",
+  "image": "https://gateway.pinata.cloud/ipfs/QmXUp6yM7hVTBCsRSwC9LD1f9kXfrEx1sYScvDXvVrHbs1",
+  "name": "Dave Starbelly",
+  "attributes": [
+    {
+      "trait_type": "Ticket",
+      "value": "Event"
+    },
+    {
+      "trait_type": "Purchased",
+      "value": "True"
+    },
+    {
+      "display_type": "date",
+      "trait_type": "Event Date",
+      "value": 1546360800
+    }
+  ]
+}

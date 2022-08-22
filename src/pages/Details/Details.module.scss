@@ -2,8 +2,6 @@
   color: #1e0a3c;
   position: relative;
   padding-bottom: 3em;
-  width: 80%;
-  margin: auto;
 
   &Sector {
     border-bottom: 1px solid #eeedf2;
@@ -20,7 +18,14 @@
       width: 68%;
       margin: auto;
 
-      span {
+      &Editor {
+        &Area {
+          height: 400px !important;
+
+        }
+      }
+
+      &Info {
         font-size: 14px;
         display: block;
         width: 70%;
@@ -67,28 +72,6 @@
         span {
           &:nth-of-type(1) {
             color: #000000 !important;
-          }
-        }
-      }
-
-      &Tags {
-        display: flex;
-
-        &Value {
-          display: flex;
-          align-items: center;
-          margin-left: .4em;
-          padding: 0 .2em ;
-          width: max-content;
-          border: 1px solid green;
-          border-radius: 25px;
-          // font-size: ;
-
-          img{
-            width: 15px;
-            display: inline-block;
-            cursor: pointer;
-            margin-left: .4em;
           }
         }
       }
@@ -150,28 +133,52 @@
           }
         }
       }
+
+      &File {
+        border: 1px solid #dcdcdf;
+        background-color: #eeedf2;
+        background-position: center;
+        background-size: cover;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1em;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease-in-out;
+
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+            rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        }
+
+        &Input {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          p {
+            margin: 0;
+            font-weight: bolder;
+          }
+        }
+      }
     }
 
     &:nth-of-type(1) {
       &::before {
-        content: url(./../../assets/icons/basicInfo.png);
+        content: url(./../../assets/icons/image.png);
       }
     }
     &:nth-of-type(2) {
       &::before {
-        content: url(./../../assets/icons/loc.png);
-      }
-    }
-    &:nth-of-type(3) {
-      &::before {
-        content: url(./../../assets/icons/dateandtime.png);
+        content: url(./../../assets/icons/basicInfo.png);
       }
     }
     &::before {
       // width: 200px;
       // height: 200px;
       position: absolute;
-      top: 0;
       left: 70px;
       top: 3em;
     }
